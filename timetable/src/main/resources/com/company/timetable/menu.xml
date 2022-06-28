@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/ui/menu">
+
+    <menu id="application" caption="msg://com.company.timetable/menu.application" insertBefore="administration">
+        <item screen="User.browse" caption="msg://com.company.timetable.screen.user/UserBrowse.caption"/>
+        <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
+        <item screen="Student.browse" caption="msg://com.company.timetable.screen.student/studentBrowse.menu"/>
+        <item screen="Group_.browse" caption="msg://com.company.timetable.screen.group/groupBrowse.menu"/>
+        <item screen="Occupation.browse" caption="msg://com.company.timetable.screen.occupation/occupationBrowse.menu"/>
+        <item screen="Teacher.browse" caption="msg://com.company.timetable.screen.teacher/teacherBrowse.menu"/>
+        <item screen="Audience.browse" caption="msg://com.company.timetable.screen.audience/audienceBrowse.menu"/>
+    </menu>
+
+</menu-config>

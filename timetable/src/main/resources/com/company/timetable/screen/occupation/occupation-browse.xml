@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://occupationBrowse.caption"
+        focusComponent="occupationsTable">
+    <data readOnly="true">
+        <collection id="occupationsDc"
+                    class="com.company.timetable.entity.Occupation">
+            <fetchPlan extends="_base">
+                <property name="audience" fetchPlan="_base"/>
+                <property name="teacher" fetchPlan="_base"/>
+                <property name="group" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="occupationsDl">
+                <query>
+                    <![CDATA[select e from Occupation e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="occupationsTable" spacing="true">
+        <filter id="filter"
+                dataLoader="occupationsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="occupationsTable"
+                    width="100%"
+                    dataContainer="occupationsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="date"/>
+                <column id="time"/>
+                <column id="audience"/>
+                <column id="teacher"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="occupationsTable.create"/>
+                <button id="editBtn" action="occupationsTable.edit"/>
+                <button id="removeBtn" action="occupationsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
