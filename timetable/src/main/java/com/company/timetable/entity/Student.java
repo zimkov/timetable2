@@ -3,6 +3,7 @@ package com.company.timetable.entity;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,6 +26,7 @@ public class Student {
     @Id
     private UUID id;
 
+    @InstanceName
     @Column(name = "FIO", nullable = false)
     @NotNull
     private String fio;
@@ -64,8 +66,8 @@ public class Student {
     @Version
     private Integer version;
 
-    @JoinColumn(name = "GROUP_ID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "GROUP_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Group group;
 
     public Group getGroup() {

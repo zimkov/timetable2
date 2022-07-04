@@ -3,6 +3,7 @@ package com.company.timetable.entity;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -12,6 +13,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
@@ -23,6 +25,7 @@ public class Teacher {
     @Id
     private UUID id;
 
+    @InstanceName
     @Column(name = "FIO", nullable = false)
     @NotNull
     private String fio;
@@ -61,14 +64,15 @@ public class Teacher {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "teacher")
-    private Occupation occupation;
+    @OneToMany(mappedBy = "teacher")
+    private List<Occupation> occupation;
 
-    public Occupation getOccupation() {
+    public List<Occupation> getOccupation() {
         return occupation;
     }
 
-    public void setOccupation(Occupation occupation) {
+    public void setOccupation(List<Occupation> occupation) {
+        //if(f)
         this.occupation = occupation;
     }
 

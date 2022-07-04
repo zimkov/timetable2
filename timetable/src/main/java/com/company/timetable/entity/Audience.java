@@ -3,6 +3,7 @@ package com.company.timetable.entity;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -10,7 +11,9 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.Date;
 import java.util.UUID;
 
@@ -23,6 +26,12 @@ public class Audience {
     @Id
     private UUID id;
 
+    @Min(1)
+    @Positive
+    @Column(name = "CAPACITY")
+    private Integer capacity = 1;
+
+    @InstanceName
     @Column(name = "NUMBER_", nullable = false, unique = true)
     @NotNull
     private Integer number;
@@ -63,6 +72,14 @@ public class Audience {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "audience")
     private Occupation occupation;
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
 
     public TypeAudience getType() {
         return type == null ? null : TypeAudience.fromId(type);

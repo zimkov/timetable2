@@ -6,9 +6,7 @@
     <data readOnly="true">
         <collection id="audiencesDc"
                     class="com.company.timetable.entity.Audience">
-            <fetchPlan extends="_base">
-                <property name="occupation" fetchPlan="_base"/>
-            </fetchPlan>
+            <fetchPlan extends="_base"/>
             <loader id="audiencesDl">
                 <query>
                     <![CDATA[select e from Audience e]]>
@@ -48,7 +46,7 @@
             <columns>
                 <column id="number"/>
                 <column id="type"/>
-                <column id="occupation"/>
+                <column id="capacity"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

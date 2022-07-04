@@ -20,9 +20,7 @@ import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "GROUP_", indexes = {
-        @Index(name = "IDX_GROUP_OCCUPATION_ID", columnList = "OCCUPATION_ID")
-})
+@Table(name = "GROUP_")
 @Entity(name = "Group_")
 public class Group {
     @JmixGeneratedValue
@@ -35,9 +33,9 @@ public class Group {
     @NotNull
     private String name;
 
-    @OnDelete(DeletePolicy.CASCADE)
-    @Composition
     @OneToMany(mappedBy = "group")
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
     private List<Student> listStudent;
 
     @Column(name = "VERSION", nullable = false)
@@ -71,16 +69,36 @@ public class Group {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
-    @JoinColumn(name = "OCCUPATION_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Occupation occupation;
+    @JoinTable(name = "GROUP_OCCUPATION_LINK",
+            joinColumns = @JoinColumn(name = "GROUP_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "OCCUPATION_ID", referencedColumnName = "ID"))
+    @ManyToMany
+    private List<Occupation> occupation;
 
-    public Occupation getOccupation() {
+    @JoinTable(name = "OCCUPATION_GROUP_LINK",
+            joinColumns = @JoinColumn(name = "GROUP_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "OCCUPATION_ID", referencedColumnName = "ID"))
+    @ManyToMany
+    private List<Occupation> occupations;
+
+    public List<Occupation> getOccupations() {
+        return occupations;
+    }
+
+    public void setOccupations(List<Occupation> occupations) {
+        this.occupations = occupations;
+    }
+
+    public void setOccupation(List<Occupation> occupation) {
+        this.occupation = occupation;
+    }
+
+    public List<Occupation> getOccupation() {
         return occupation;
     }
 
-    public void setOccupation(Occupation occupation) {
-        this.occupation = occupation;
+    public String toString(){
+        return this.name;
     }
 
     public List<Student> getListStudent() {

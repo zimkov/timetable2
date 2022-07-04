@@ -7,7 +7,6 @@
                   class="com.company.timetable.entity.Group">
             <fetchPlan extends="_base">
                 <property name="listStudent" fetchPlan="_base"/>
-                <property name="occupation" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
             <collection id="listStudentDc" property="listStudent"/>
@@ -32,17 +31,12 @@
         <form id="form" dataContainer="groupDc">
             <column width="350px">
                 <textField id="nameField" property="name"/>
-                <entityPicker id="occupationField" property="occupation">
-                    <actions>
-                        <action id="entityLookup" type="entity_lookup"/>
-                        <action id="entityClear" type="entity_clear"/>
-                    </actions>
-                </entityPicker>
             </column>
         </form>
         <groupBox id="listStudentBox" caption="msg://com.company.timetable.entity/Group.listStudent">
             <table id="listStudentTable" dataContainer="listStudentDc" width="100%" height="200px">
                 <actions>
+                    <action id="add" type="add"/>
                     <action id="create" type="create"/>
                     <action id="edit" type="edit"/>
                     <action id="remove" type="remove"/>
@@ -52,6 +46,7 @@
                     <column id="recordNumber"/>
                 </columns>
                 <buttonsPanel>
+                    <button action="listStudentTable.add"/>
                     <button action="listStudentTable.create"/>
                     <button action="listStudentTable.edit"/>
                     <button action="listStudentTable.remove"/>

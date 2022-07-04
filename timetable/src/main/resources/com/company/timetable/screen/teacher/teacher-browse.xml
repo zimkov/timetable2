@@ -6,9 +6,7 @@
     <data readOnly="true">
         <collection id="teachersDc"
                     class="com.company.timetable.entity.Teacher">
-            <fetchPlan extends="_base">
-                <property name="occupation" fetchPlan="_base"/>
-            </fetchPlan>
+            <fetchPlan extends="_base"/>
             <loader id="teachersDl">
                 <query>
                     <![CDATA[select e from Teacher e]]>
@@ -48,7 +46,6 @@
             <columns>
                 <column id="fio"/>
                 <column id="email"/>
-                <column id="occupation"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

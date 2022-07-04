@@ -6,11 +6,12 @@
         <instance id="occupationDc"
                   class="com.company.timetable.entity.Occupation">
             <fetchPlan extends="_base">
+                <property name="group" fetchPlan="_base"/>
                 <property name="audience" fetchPlan="_base"/>
                 <property name="teacher" fetchPlan="_base"/>
-                <property name="group" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
+            <collection id="groupDc" property="group"/>
         </instance>
     </data>
     <facets>
@@ -40,7 +41,7 @@
                             <action id="entityClear" type="entity_clear"/>
                         </actions>
                     </entityPicker>
-                    <entityPicker id="teacherField" property="teacher">
+                    <entityPicker id="teacherField" property="teacher" caption="msg://teacherField.caption">
                         <actions>
                             <action id="entityLookup" type="entity_lookup"/>
                             <action id="entityClear" type="entity_clear"/>
@@ -48,6 +49,25 @@
                     </entityPicker>
                 </column>
             </form>
+            <groupBox id="groupBox" caption="msg://com.company.timetable.entity/Occupation.group">
+                <table id="groupTable" dataContainer="groupDc" width="100%" height="200px">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="groupTable.add"/>
+                        <button action="groupTable.create"/>
+                        <button action="groupTable.edit"/>
+                        <button action="groupTable.remove"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
         </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>

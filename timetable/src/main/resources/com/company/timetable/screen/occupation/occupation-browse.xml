@@ -7,9 +7,9 @@
         <collection id="occupationsDc"
                     class="com.company.timetable.entity.Occupation">
             <fetchPlan extends="_base">
+                <property name="group" fetchPlan="_base"/>
                 <property name="audience" fetchPlan="_base"/>
                 <property name="teacher" fetchPlan="_base"/>
-                <property name="group" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="occupationsDl">
                 <query>
@@ -39,9 +39,9 @@
                 dataLoader="occupationsDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="occupationsTable"
-                    width="100%"
-                    dataContainer="occupationsDc">
+        <table id="occupationsTable"
+               width="100%"
+               dataContainer="occupationsDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
@@ -51,7 +51,8 @@
                 <column id="date"/>
                 <column id="time"/>
                 <column id="audience"/>
-                <column id="teacher"/>
+                <column id="teacher" caption="msg://teacher.caption"/>
+                <column id="group" caption="msg://group.caption"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
@@ -60,7 +61,7 @@
                 <button id="editBtn" action="occupationsTable.edit"/>
                 <button id="removeBtn" action="occupationsTable.remove"/>
             </buttonsPanel>
-        </groupTable>
+        </table>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
             <button action="lookupCancelAction"/>

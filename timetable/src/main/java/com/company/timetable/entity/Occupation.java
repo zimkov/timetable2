@@ -29,6 +29,13 @@ public class Occupation {
     @Id
     private UUID id;
 
+    @JoinTable(name = "OCCUPATION_GROUP_LINK",
+            joinColumns = @JoinColumn(name = "OCCUPATION_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "GROUP_ID", referencedColumnName = "ID"))
+    @ManyToMany
+    @OnDelete(DeletePolicy.UNLINK)
+    private List<Group> group;
+
     @Column(name = "DATE_", nullable = false)
     @Temporal(TemporalType.DATE)
     @NotNull
@@ -39,17 +46,14 @@ public class Occupation {
     @NotNull
     private Date time;
 
-    @OnDelete(DeletePolicy.CASCADE)
+    @OnDelete(DeletePolicy.UNLINK)
     @JoinColumn(name = "AUDIENCE_ID")
     @OneToOne(fetch = FetchType.LAZY)
     private Audience audience;
 
     @JoinColumn(name = "TEACHER_ID")
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Teacher teacher;
-
-    @OneToMany(mappedBy = "occupation")
-    private List<Group> group;
 
     @Column(name = "VERSION", nullable = false)
     @Version
@@ -86,6 +90,13 @@ public class Occupation {
         return group;
     }
 
+    public String toString(){
+        String s = "";
+        for(int i=0; i<group.size(); i++) {
+            s += group.get(i) + " ";
+        }
+        return s;
+    }
     public void setGroup(List<Group> group) {
         this.group = group;
     }

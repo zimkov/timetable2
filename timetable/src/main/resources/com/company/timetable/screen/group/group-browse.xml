@@ -6,7 +6,9 @@
     <data readOnly="true">
         <collection id="groupsDc"
                     class="com.company.timetable.entity.Group">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="listStudent" fetchPlan="_base"/>
+            </fetchPlan>
             <loader id="groupsDl">
                 <query>
                     <![CDATA[select e from Group_ e]]>

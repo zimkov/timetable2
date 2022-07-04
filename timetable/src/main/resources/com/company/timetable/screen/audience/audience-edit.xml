@@ -5,9 +5,7 @@
     <data>
         <instance id="audienceDc"
                   class="com.company.timetable.entity.Audience">
-            <fetchPlan extends="_base">
-                <property name="occupation" fetchPlan="_base"/>
-            </fetchPlan>
+            <fetchPlan extends="_base"/>
             <loader/>
         </instance>
     </data>
@@ -31,12 +29,7 @@
             <column width="350px">
                 <textField id="numberField" property="number"/>
                 <comboBox id="typeField" property="type"/>
-                <entityPicker id="occupationField" property="occupation">
-                    <actions>
-                        <action id="entityLookup" type="entity_lookup"/>
-                        <action id="entityClear" type="entity_clear"/>
-                    </actions>
-                </entityPicker>
+                <textField id="capacityField" property="capacity" visible="false"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">
