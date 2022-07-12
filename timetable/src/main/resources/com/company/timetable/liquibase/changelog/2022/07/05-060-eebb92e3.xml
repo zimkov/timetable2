@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="timetable">
+        <dropForeignKeyConstraint baseTableName="GROUP_OCCUPATION_LINK" constraintName="FK_GROOCC_ON_GROUP"/>
+    </changeSet>
+    <changeSet id="2" author="timetable">
+        <dropForeignKeyConstraint baseTableName="GROUP_OCCUPATION_LINK" constraintName="FK_GROOCC_ON_OCCUPATION"/>
+    </changeSet>
+
+    <changeSet id="3" author="timetable">
+        <dropTable cascadeConstraints="true" tableName="GROUP_OCCUPATION_LINK"/>
+    </changeSet>
+    <changeSet id="14" author="timetable">
+        <loadData tableName="OCCUPATION" file="com/company/timetable/liquibase/changelog/data/occupation.csv" separator=";">
+            <column name="ID" type="UUID"/>
+            <column name="DATE_" type="LOCALDATE"/>
+            <column name="TIME_" type="LOCALTIME"/>
+            <column name="AUDIENCE_ID" type="UUID"/>
+            <column name="TEACHER_ID" type="UUID"/>
+            <column name="VERSION" type="INT"/>
+        </loadData>
+
+    </changeSet>
+    <changeSet id="13" author="timetable">
+        <loadData tableName="GROUP_" file="com/company/timetable/liquibase/changelog/data/group.csv" separator=";">
+            <column name="ID" type="UUID"/>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="VERSION" type="INT"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="12" author="timetable">
+        <loadData tableName="STUDENT" file="com/company/timetable/liquibase/changelog/data/student.csv" separator=";">
+            <column name="ID" type="UUID"/>
+            <column name="FIO" type="VARCHAR(255)"/>
+            <column name="RECORD_NUMBER" type="INT"/>
+            <column name="VERSION" type="INT"/>
+            <column name="GROUP_ID" type="UUID"/>
+        </loadData>
+    </changeSet>
+<changeSet id="19" author="timetable">
+    <loadData tableName="OCCUPATION_GROUP_LINK" file="com/company/timetable/liquibase/changelog/data/OCCUPATION_GROUP_LINK.csv" separator=";">
+        <column name="occupation_id" type="uuid"/>
+        <column name="group_id" type="uuid"/>
+    </loadData>
+</changeSet>
+</databaseChangeLog>

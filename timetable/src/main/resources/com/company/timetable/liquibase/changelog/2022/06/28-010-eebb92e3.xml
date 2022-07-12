@@ -21,6 +21,7 @@
             <column name="DELETED_DATE" type="DATETIME"/>
         </createTable>
     </changeSet>
+
     <changeSet id="2" author="timetable">
         <createTable tableName="GROUP_">
             <column name="ID" type="UUID">
@@ -41,6 +42,7 @@
             <column name="OCCUPATION_ID" type="UUID"/>
         </createTable>
     </changeSet>
+
     <changeSet id="3" author="timetable">
         <createTable tableName="OCCUPATION">
             <column name="ID" type="UUID">
@@ -65,6 +67,7 @@
             <column name="DELETED_DATE" type="DATETIME"/>
         </createTable>
     </changeSet>
+
     <changeSet id="4" author="timetable">
         <createTable tableName="STUDENT">
             <column name="ID" type="UUID">
@@ -90,6 +93,7 @@
             </column>
         </createTable>
     </changeSet>
+
     <changeSet id="5" author="timetable">
         <createTable tableName="TEACHER">
             <column name="ID" type="UUID">
@@ -109,6 +113,14 @@
             <column name="DELETED_BY" type="VARCHAR(255)"/>
             <column name="DELETED_DATE" type="DATETIME"/>
         </createTable>
+    </changeSet>
+    <changeSet id="15" author="timetable">
+        <loadData tableName="TEACHER" file="com/company/timetable/liquibase/changelog/data/teacher.csv" separator=";">
+            <column name="ID" type="UUID"/>
+            <column name="FIO" type="VARCHAR(255)"/>
+            <column name="EMAIL" type="VARCHAR(255)"/>
+            <column name="VERSION" type="INT"/>
+        </loadData>
     </changeSet>
     <changeSet id="6" author="timetable">
         <createIndex indexName="IDX_GROUP_OCCUPATION_ID" tableName="GROUP_">

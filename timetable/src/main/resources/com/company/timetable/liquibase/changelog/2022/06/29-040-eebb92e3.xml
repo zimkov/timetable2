@@ -10,4 +10,13 @@
             <column name="CAPACITY" type="INT"/>
         </addColumn>
     </changeSet>
+    <changeSet id="16" author="timetable">
+        <loadData tableName="AUDIENCE" file="com/company/timetable/liquibase/changelog/data/audience.csv" separator=";">
+            <column name="ID" type="UUID"/>
+            <column name="CAPACITY" type="INT"/>
+            <column name="NUMBER_" type="INT"/>
+            <column name="TYPE_" type="TypeAudience"/>
+            <column name="VERSION" type="INT"/>
+        </loadData>
+    </changeSet>
 </databaseChangeLog>
